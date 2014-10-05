@@ -15,7 +15,7 @@
     </engines>
 
     <js-module src="www/updateAppPlugin.js">
-       <clobbers target="window.plugin.updateApp" />
+       <clobbers target="window.plugins.updateApp" />
     </js-module>
 
     <!-- android -->
