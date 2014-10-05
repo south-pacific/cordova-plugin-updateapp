@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.qinsilk.updateapp"
+    version="0.0.1">
+
+    <name>UpdateApp</name>
+    <description>
+        应用内提示更新APP
+    </description>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/updateAppPlugin.js">
+       <clobbers target="window.plugin.updateApp" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="UpdateApp">
+                <param name="android-package" value="com.phonegap.plugins.updateapp.UpdateApp"/>
+            </feature>   
+        </config-file>
+        <source-file src="src/android/UpdateApp.java" target-dir="src/com/phonegap/plugins/updateapp" />
+        <source-file src="src/android/softupdate_progress.xml" target-dir="res/layout"/>
+
+        <config-file target="res/values/strings.xml" parent="/resources">
+            <string name="soft_update_no">已经是最新版本</string>
+            <string name="soft_update_title">软件更新</string>
+            <string name="soft_update_info">检测到新版本，立即更新吗？</string>
+            <string name="soft_update_updatebtn">更新</string>
+            <string name="soft_update_later">稍后更新</string>
+            <string name="soft_updating">正在更新</string>
+            <string name="soft_update_cancel">取消</string>
+        </config-file>
+    </platform>
+</plugin>
