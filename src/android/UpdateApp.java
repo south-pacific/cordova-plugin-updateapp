@@ -67,18 +67,10 @@ public class UpdateApp extends CordovaPlugin {
 			this.checkPath = args.getString(0);
         	checkAndUpdate();
         }else if(action.equals("getCurrentVersion")){
-        	//优化 缩短传输内容，减少流量
-//        	JSONObject obj = new JSONObject();
-//        	obj.put("versionCode", this.getCurrentVerCode());
-//        	obj.put("versionName", this.getCurrentVerName());
         	callbackContext.success(this.getCurrentVerCode()+"");
         }else if(action.equals("getServerVersion")){
         	this.checkPath = args.getString(0);
         	if(this.getServerVerInfo()){
-        		//优化 缩短传输内容，减少流量
-//        		JSONObject obj = new JSONObject();
-//            	obj.put("serverVersionCode", newVerCode);
-//            	obj.put("serverVersionName", newVerName);
         		callbackContext.success(newVerCode+"");
         	}else{
         		callbackContext.error("can't connect to the server!please check [checkpath]");
@@ -96,7 +88,7 @@ public class UpdateApp extends CordovaPlugin {
     private void checkAndUpdate(){
     	if(getServerVerInfo()){
     		int currentVerCode = getCurrentVerCode();
-    		if(newVerCode>currentVerCode){
+    		if(newVerCode!=currentVerCode){
     			this.showNoticeDialog();
     		}
     	}
@@ -117,31 +109,6 @@ public class UpdateApp extends CordovaPlugin {
 			e.printStackTrace();
 		}
     	return currentVer;
-    }
-    
-    /**
-     * 获取应用当前版本名称
-     * @param context
-     * @return
-     */
-    private String getCurrentVerName(){
-    	String packageName = this.mContext.getPackageName();
-    	String currentVerName = "";
-    	try {
-    		currentVerName = this.mContext.getPackageManager().getPackageInfo(packageName, 0).versionName;
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
-    	return currentVerName;
-    }
-    
-    /**
-     * 获取应用名称
-     * @param context
-     * @return
-     */
-    private String getAppName(){
-    	return this.mContext.getResources().getText(R.string.app_name).toString();
     }
     
     /**
