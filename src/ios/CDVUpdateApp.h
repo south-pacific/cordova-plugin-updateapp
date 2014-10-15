@@ -1,7 +1,7 @@
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <Cordova/CDVPlugin.h>
-    
+
+@interface CDVUpdateApp : CDVPlugin
+
 - (void)getCurrentVerInfo:(CDVInvokedUrlCommand*)command;
-    
+
 @end

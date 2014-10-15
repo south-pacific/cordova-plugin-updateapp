@@ -1,4 +1,5 @@
 #import "CDVUpdateApp.h"
+#import <Cordova/CDVPluginResult.h>
 
 @implementation CDVUpdateApp
 
