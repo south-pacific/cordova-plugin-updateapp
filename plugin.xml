@@ -38,4 +38,18 @@
             <string name="soft_update_cancel">取消</string>
         </config-file>
     </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <plugins-plist key="UpdateApp" string="UpdateApp" />
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="UpdateApp">
+                <param name="ios-package" value="CDVUpdateApp" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVUpdateApp.h" />
+        <source-file src="src/ios/CDVUpdateApp.m" />
+    </platform>
 </plugin>
