@@ -2,6 +2,6 @@
 
 @interface CDVUpdateApp : CDVPlugin
 
-- (void)getCurrentVerInfo:(CDVInvokedUrlCommand*)command;
+- (void)getCurrentVersion:(CDVInvokedUrlCommand*)command;
 
 @end

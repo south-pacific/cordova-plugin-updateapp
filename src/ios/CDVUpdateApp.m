@@ -3,7 +3,7 @@
 
 @implementation CDVUpdateApp
 
-- (void)getCurrentVerInfo:(CDVInvokedUrlCommand*)command
+- (void)getCurrentVersion:(CDVInvokedUrlCommand*)command
 {
 
     NSString* callbackId = command.callbackId;
