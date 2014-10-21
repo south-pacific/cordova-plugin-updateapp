@@ -99,7 +99,7 @@ public class UpdateApp extends CordovaPlugin {
             public void run() {
                 if (getServerVerInfo()) {
                     int currentVerCode = getCurrentVerCode();
-                    if (newVerCode != currentVerCode) {
+                    if (newVerCode > currentVerCode) {
                         showNoticeDialog();
                     }
                 }
