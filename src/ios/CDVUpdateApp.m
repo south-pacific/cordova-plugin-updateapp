@@ -49,7 +49,7 @@ NSString *ipaPath;
             NSString *lastVersion = [resultDic objectForKey:@"verName"];
             ipaPath = [resultDic objectForKey:@"ipaPath"];
             
-            if (![[self getCurrentVersionCode] isEqualToString:lastVersion]) {
+            if ([lastVersion compare:[self getCurrentVersionCode] options:NSNumericSearch] == NSOrderedDescending) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新" message:@"有新的版本，是否前往更新？" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"更新", nil];
                 alert.tag = 10000;
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -70,7 +70,7 @@ NSString *ipaPath;
         NSError *error = nil;
         
         //加载一个NSURL对象
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0f];
         //将请求的url数据放到NSData对象中
         NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
