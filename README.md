@@ -40,4 +40,4 @@ androidVersion.json:
 
 iosVersion.json:
 =========
-`{"verName":"最新版ipa的版本号","ipaPath":"ipa的地址"}`
+`{"verName":"最新版ipa的版本号","ipaPath":"plist的地址或者app的itunes地址"}`
