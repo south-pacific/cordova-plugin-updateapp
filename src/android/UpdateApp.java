@@ -87,6 +87,9 @@ public class UpdateApp extends CordovaPlugin {
                 }
             });
             return true;
+        } else if ("getVersionName".equals(action)) {
+            callbackContext.success(this.getCurrentVerName());
+            return true;
         }
         return false;
     }
@@ -109,7 +112,7 @@ public class UpdateApp extends CordovaPlugin {
     }
 
     /**
-     * 获取应用当前版本代码
+     * 获取应用当前版本代码versionCode
      * 
      * @param context
      * @return
@@ -121,7 +124,25 @@ public class UpdateApp extends CordovaPlugin {
             currentVer = this.mContext.getPackageManager().getPackageInfo(
                     packageName, 0).versionCode;
         } catch (NameNotFoundException e) {
-            Log.d(LOG_TAG, "获取应用当前版本代码异常：" + e.toString());
+            Log.d(LOG_TAG, "获取应用当前版本代码versionCode异常：" + e.toString());
+        }
+        return currentVer;
+    }
+
+    /**
+     * 获取应用当前版本代码versionName
+     * 
+     * @param context
+     * @return
+     */
+    private String getCurrentVerName() {
+        String packageName = this.mContext.getPackageName();
+        String currentVer = "";
+        try {
+            currentVer = this.mContext.getPackageManager().getPackageInfo(
+                    packageName, 0).versionName;
+        } catch (NameNotFoundException e) {
+            Log.d(LOG_TAG, "获取应用当前版本代码versionName异常：" + e.toString());
         }
         return currentVer;
     }
@@ -326,7 +347,7 @@ public class UpdateApp extends CordovaPlugin {
         }
         // 通过Intent安装APK文件
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
                 "application/vnd.android.package-archive");
         mContext.startActivity(i);
