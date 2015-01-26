@@ -33,7 +33,9 @@ window.plugins.updateApp.getServerVerInfo(function (serverVersionCode) {
 // 检查并更新，versionServer为版本信息文件地址
 window.plugins.updateApp.checkAndUpdate(versionServer);
 
-// 获取APP当前版本号，与getCurrentVerInfo方法不同之处在于android下getCurrentVerInfo返回的是versionCode，该方法返回的是versionName
+// 获取APP当前版本号
+// 与getCurrentVerInfo方法不同之处在于android下getCurrentVerInfo返回的是versionCode
+// 该方法返回的是versionName
 window.plugins.updateApp.getAppVersion(function (version) {
     console.log(version);
 });
