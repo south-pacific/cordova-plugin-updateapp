@@ -16,6 +16,17 @@ NSString *ipaPath;
     }];
 }
 
+- (void)getVersionName:(CDVInvokedUrlCommand*)command
+{
+    [self.commandDelegate runInBackground:^{
+        NSString* version = [self getCurrentVersionName];
+        
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:version];
+        
+        [self.commandDelegate evalJs:[pluginResult toSuccessCallbackString:command.callbackId]];
+    }];
+}
+
 - (void)getServerVersion:(CDVInvokedUrlCommand*)command
 {
     
@@ -62,6 +73,14 @@ NSString *ipaPath;
 
 - (NSString *)getCurrentVersionCode {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
+- (NSString *)getCurrentVersionName {
+    NSString* version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    if (version == nil) {
+        version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    }
+    return version;
 }
 
 - (NSDictionary *)getServerVersionCode:(NSString *)url {
