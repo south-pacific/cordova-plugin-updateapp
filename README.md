@@ -8,6 +8,7 @@ cordova-plugin-updateapp
 + 该版本插件android和iOS均是基于服务器上的版本信息文件
 + iOS的更新是基于企业证书签名，内网分发的应用编写的
 + iOS下需要基于appstore的lookup接口做检查更新的话，这个插件不适用，需要稍微做些修改
++ 2015年3月更新，提交到appstore的应用如果有检查更新功能，会被拒绝
 
 安装：
 ========
